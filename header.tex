@@ -1,0 +1,26 @@
+\usepackage[textwidth=17mm]{todonotes}
+\newcommand{\instructions}[1]{
+	\todo[color=black!20,inline,size=\small]{#1}
+}
+\newcommand{\customtodo}[4]{
+	\todo[color=#2,inline,size=\small]{
+		\ifx&#3&
+		\textbf{#1} #4
+	\else
+		\textbf{#1$\Rightarrow$#3} #4
+		\fi
+	}
+}
+\newcommand{\issam}[2][]{\customtodo{Issam}{green!40}{#1}{#2}}
+\newcommand{\antoine}[2][]{\customtodo{Antoine}{red!40}{#1}{#2}}
+\newcommand{\helene}[2][]{\customtodo{Helene}{orange!40}{#1}{#2}}
+\newcommand{\otto}[2][]{\customtodo{Otto}{green!40}{#1}{#2}}
+
+\usepackage{xspace}
+\newcommand{\ie}[0]{{i.e.},\xspace}
+\newcommand{\vs}[0]{{vs.}\xspace}
+\newcommand{\eg}[0]{{e.g.},\xspace}
+\newcommand{\etal}[0]{{et al.}\xspace}
+\newcommand{\wrt}[0]{{w.r.t.}\xspace}
+\newcommand{\aka}[0]{{a.k.a.}\xspace}
+\newcommand{\via}[0]{{via}\xspace}

@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage[letterpaper, left=1in, right=1in, bottom=1.1in, top=0.75in]{geometry}
+\usepackage{graphicx} % Required for inserting images
+
+\title{Manuscript Antoine Omond}
+\author{Antoine OMOND}
+\date{April 2024}
+
+\input{header}
+
+\begin{document}
+
+\maketitle
+
+\section{State of the art}
+\subsection{Reconfiguration solutions for self-adaptive systems}
+
+\subsubsection{MAPE-K model}
+
+When dealing with self-adaptive systems, it is common to refer to the MAPE-K model~\cite{kephart_vision_2003}. The MAPE-K model is an abstraction proposed by IBM to help designing self-adaptive systems. The MAPE-K model is composed of four functions (MAPE) that have a common knowledge (K). The four functions are the Monitor (M), Analyse (A), Plan (P) and Execution (E) functions. Each function represents a specific step of the adaptation. The common knowledge represents the set of data or framework that are shared between the MAPE functions. This knowledge enables the collaboration between the different MAPE functions.
+ 
+The MAPE is often represented as a loop. Each function of the MAPE relies on the output of the previous one. The Monitor function is responsible for collecting information relevant for the adaptation. Such information can be extracted from the underlying host (\eg resource usage, remaining energy, software version, failure), the network (\eg neighbors discovery, contention, connectivity) or the physical environment (\eg heat). Such information can be combined or transformed to suit the use-case. These information are provided for the Analysis function.
+
+%Different kind of information can be extracted according to the target adaptation use-case. Monitoring software version can enable automatic updates. Monitoring resource usage can enable automatic load-balancing. Monitoring link quality with neighbors can enable automatic switching between radio technology or its parameters.
+
+%for  represents the collection of metrics relevant for the adaptation. Such metrics can be any metric that helps the adaptation. It can be local metrics such as current resource utilisation (\eg CPU, memory), remaining energy, software/hardware failure, etc. It can also be external metrics such as metrics from physical sensors (\eg heat) or from other devices (\eg connectivity, devices entering/leaving the network). 
+%This step gathers such metrics that serve as input for the Analysis step. 
+
+The Analysis function is responsible for the , from the given metrics, whether the node should move from its current state to the next. The state of a node is defined as its current software configuration (\eg installed and running services). Such step usually define a set of goals and metrics thresholds that a device should respect. Such goal can be related to the Quality of Service (\eg ensuring that the device is able to sustain a specific load, ensuring that the remaining energy is enough for the device to continue working for a specific duration, etc). From the given metrics, the node checks if the goal are respected. If it is not the case, the node decide a target state that the node should have to respect the goals. The current and target state are given to the Plan step. 
+
+In the Plan step, the node creates the adaptation steps required to go from the current to the target state. In order to compute the Plan, the node needs to have a representation of its current state. This state can be defined as  The plan is composed of the actions, commands or instructions allowing a node to change its state. These can be actions such as the activation/deactivation of services/devices, installation/update of services. The creation of the Plan ensures that the actions order keep the system in a coherent state (\eg dependencies order between services is respected). When the Plan is created, it is given to the Execution step.
+
+In the Execution step, the node executes each step of the Plan. The Execution is ordered by the dependency between each action (\eg order of precedence). 
+
+Finally, the Knowledge (K) relates to any kind of shared Knowledge used between the MAPE steps. For example, the Knowledge can be a shared framework and software that links together all MAPE steps. In the context of reconfiguration, the Knowledge can also be the representation of the deployed infrastructure. This can notably be used by the Analysis and Plan steps to compute the target state from the current. 
+
+\subsubsection{MAPE-K patterns for reconfiguration solutions}
+As stated previously, the MAPE loop is an abstraction. Each step can be implemented in different ways to suit any use-case. A first simple example is the centralized pattern, the whole MAPE loop is controlled by a single entity. This entity implements each step of the loop.
+
+%Some steps can be done in parallel, others are done sequentially. Some steps of the Plan can be related to each other. In this case, the Execution has to wait for the tasks it relies on before continuing. 
+
+\bibliographystyle{IEEEtran}
+\bibliography{main.bib}
+
+\end{document}
